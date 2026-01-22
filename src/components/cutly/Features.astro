@@ -1,0 +1,21 @@
+---
+import { Icon } from 'astro-icon/components';
+import { content } from '../../data/content';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="max-w-[1200px] mx-auto px-5 py-10 md:py-20 flex flex-col gap-10">
+  <SectionTitle>{content.featuresTitle}</SectionTitle>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+    {content.features.map((item) => (
+      <div class="bg-surface p-8 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[rgba(0,0,0,0.03)] flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-300">
+        <div class="w-14 h-14 rounded-2xl bg-secondary-bg flex items-center justify-center text-primary text-2xl mb-2">
+          <Icon name={item.icon} />
+        </div>
+        <h3 class="text-2xl font-bold text-text-main">{item.title}</h3>
+        <p class="text-base text-text-secondary leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </div>
+</section>

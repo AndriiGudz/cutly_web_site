@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components';
+import { content } from '../../data/content';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="max-w-[1200px] mx-auto px-5 py-10 md:py-20 flex flex-col gap-10">
+  <SectionTitle>{content.privacyTitle}</SectionTitle>
+  
+  <div class="bg-secondary-bg p-6 md:p-10 rounded-3xl border-l-4 border-primary">
+    <div class="flex items-center gap-4 mb-5">
+      <Icon name="fa6-solid:shield-halved" class="text-3xl text-primary" />
+      <h3 class="text-2xl font-bold">{content.privacyHeading}</h3>
+    </div>
+    
+    <p class="text-base text-text-secondary leading-relaxed mb-5">
+      {content.privacyText}
+    </p>
+    
+    <div class="flex flex-wrap gap-5 mt-5">
+      <a href="/privacy.html" class="text-primary font-bold no-underline hover:underline">
+        {content.privacyPolicy}
+      </a>
+      <a href="/terms.html" class="text-primary font-bold no-underline hover:underline">
+        {content.terms}
+      </a>
+    </div>
+  </div>
+</section>

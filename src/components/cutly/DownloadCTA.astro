@@ -1,0 +1,10 @@
+---
+import SectionTitle from './SectionTitle.astro';
+import GooglePlayButton from './GooglePlayButton.astro';
+import { content } from '../../data/content';
+---
+
+<section class="py-20 px-5 text-center flex flex-col items-center gap-8 bg-background-secondary/30">
+  <SectionTitle title={content.downloadTitle} />
+  <GooglePlayButton />
+</section>

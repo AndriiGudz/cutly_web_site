@@ -1,0 +1,99 @@
+---
+import { content } from '../../data/content';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const screenshots = [
+  '/images/cutly_1.webp',
+  '/images/cutly_2.webp',
+  '/images/cutly_3.webp',
+  '/images/cutly_4.webp',
+  '/images/cutly_5.webp',
+  '/images/cutly_6.webp',
+  '/images/cutly_7.webp',
+  '/images/cutly_8.webp',
+];
+
+const images = screenshots.map((src, i) => ({
+  src,
+  alt: content.screenshotsAlt.replace('{{index}}', (i + 1).toString())
+}));
+---
+
+<section class="py-10 md:py-20 overflow-hidden w-full relative">
+  <!-- Добавлен контейнер с макс. шириной, чтобы слайдер не был бесконечно широким на больших экранах,
+       но сохранял возможность выхода за пределы на мобильных, если нужно.
+       Здесь мы ограничиваем ширину враппера, но разрешаем оверфлоу визуально. -->
+  <div class="w-full max-w-[1920px] mx-auto">
+    <div class="swiper mySwiper w-full !pb-14 md:!pb-20 !pt-10">
+      <div class="swiper-wrapper">
+        <!-- Дублируем массив изображений несколько раз для создания эффекта бесконечности 
+             еще ДО того, как Swiper включит свой loop режим. Это помогает избежать дыр 
+             на широких экранах, если слайдов недостаточно для заполнения всей ширины. -->
+        {[...images, ...images, ...images].map((img, index) => (
+          <div class="swiper-slide">
+            <img
+              src={img.src}
+              alt={`${img.alt} - duplicate ${index}`}
+              class="w-full rounded-[20px] shadow-[0_15px_35px_rgba(45,130,89,0.2)] border-4 border-white block"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay, Pagination } from 'swiper/modules';
+
+  new Swiper(".mySwiper", {
+    modules: [Autoplay, Pagination],
+    effect: 'slide',
+    speed: 600,
+    spaceBetween: 20,
+    slidesPerView: "auto", // Автоматическая ширина слайдов
+    centeredSlides: true,  // Активный слайд всегда по центру
+    loop: true,            // Бесконечный цикл
+    // Важно: loopedSlides должен быть достаточно большим, чтобы перекрыть ширину экрана
+    loopedSlides: 12,      
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints: {
+      320: {
+        spaceBetween: 20,
+      },
+      600: {
+        spaceBetween: 30,
+      },
+      1024: {
+        spaceBetween: 40,
+      },
+    },
+  });
+</script>
+
+<style>
+  .swiper-slide {
+    width: 280px;
+    height: auto;
+    transition: transform 0.3s;
+  }
+  .swiper-slide-active {
+    transform: scale(1.05);
+  }
+  :global(.swiper-pagination-bullet-active) {
+    background-color: var(--color-primary) !important;
+  }
+</style>

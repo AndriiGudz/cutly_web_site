@@ -1,0 +1,22 @@
+---
+import { Icon } from 'astro-icon/components';
+import { content } from '../../data/content';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="max-w-[1200px] mx-auto px-5 py-10 md:py-20 flex flex-col gap-10">
+  <SectionTitle>{content.accountTitle}</SectionTitle>
+  
+  <a href="/delete-account.html" class="no-underline text-inherit w-full block group">
+    <div class="bg-[#FFF5F2] p-6 md:p-10 rounded-3xl border-l-4 border-terracotta cursor-pointer transition-transform duration-200 group-hover:-translate-y-1">
+      <div class="flex items-center gap-4 mb-5">
+        <Icon name="fa6-solid:user-minus" class="text-3xl text-terracotta" />
+        <h3 class="text-2xl font-bold">{content.accountHeading}</h3>
+      </div>
+      
+      <p class="text-base text-text-secondary leading-relaxed">
+        {content.accountText}
+      </p>
+    </div>
+  </a>
+</section>

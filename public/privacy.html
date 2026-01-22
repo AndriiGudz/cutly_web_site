@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Cutly</title>
+    <meta name="description" content="Privacy policy for the Cutly mobile app">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D8259;
+            --primary-dark: #1F5D41;
+            --primary-light: #5BA682;
+            --background: #FEFBF7;
+            --surface: #FFFFFF;
+            --text-main: #0A0A0A;
+            --text-secondary: #4A4A4A;
+        }
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .section {
+            padding: 120px 20px 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #2D8259, #4CAF50);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+        h4 {
+            font-size: 1.2rem;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+        ul {
+            padding-left: 20px;
+            margin: 10px 0 20px;
+            color: var(--text-secondary);
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .meta {
+            font-weight: bold;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+        }
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        footer a {
+            color: var(--primary-light);
+            font-weight: normal;
+        }
+        .back-link {
+            display: inline-flex;
+            margin-bottom: 20px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            padding: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-4px);
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 20px 60px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 384 512" fill="currentColor">
+            <!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+            <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+        </svg>
+    </button>
+
+    <script>
+        const backToTopButton = document.getElementById('back-to-top');
+
+        function toggleBackToTop() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('scroll', toggleBackToTop);
+        backToTopButton.addEventListener('click', scrollToTop);
+    </script>
+    <div class="container">
+        <div class="section">
+            <a href="/" class="back-link">← Back to Cutly</a>
+            
+            <br>
+            <h1>Privacy Policy</h1>
+            
+            <div class="meta">
+                Effective date: 2025-12-25<br>
+                Last updated: 2026-01-19
+            </div>
+
+            <p>This Privacy Policy describes how the Cutly mobile application (the “App”, “we”, “our service”) collects, uses, and protects users’ personal data.</p>
+            <p>By using the App, you agree to the terms of this Privacy Policy.</p>
+
+            <h3>1. What data we collect</h3>
+            
+            <h4>1.1 Data you provide</h4>
+            <ul>
+                <li>email address</li>
+                <li>name or display name (if provided)</li>
+                <li>nutrition settings, preferences, and restrictions</li>
+                <li>user profile data</li>
+            </ul>
+
+            <h4>1.2 Data created while using the app</h4>
+            <ul>
+                <li>generated menus and recipes</li>
+                <li>shopping lists</li>
+                <li>feature usage history</li>
+            </ul>
+
+            <h4>1.3 Technical and analytics data</h4>
+            <ul>
+                <li>device type, operating system version</li>
+                <li>app identifiers</li>
+                <li>crash, performance, and feature usage data</li>
+            </ul>
+
+            <h3>2. Services and technologies we use</h3>
+            <p>To operate the App, we may use third-party services:</p>
+
+            <h4>2.1 Supabase</h4>
+            <p>Supabase is used for:</p>
+            <ul>
+                <li>user authentication</li>
+                <li>storing user data</li>
+                <li>account management</li>
+            </ul>
+            <p>Supabase processes data in accordance with GDPR requirements and applies modern security measures.</p>
+
+            <h4>2.2 Firebase (Google)</h4>
+            <p>Firebase may be used for:</p>
+            <ul>
+                <li>app usage analytics</li>
+                <li>error and crash tracking</li>
+                <li>improving stability and performance</li>
+            </ul>
+            <p>Firebase may collect technical data, including device identifiers and information about interactions with the app.</p>
+
+            <h4>2.3 Artificial intelligence (AI)</h4>
+            <p>The App uses AI algorithms to:</p>
+            <ul>
+                <li>generate meal recommendations</li>
+                <li>build menus and generate dish images</li>
+            </ul>
+            <p>
+                To generate meal plans, recipes, and personalized recommendations, the App may process user-provided inputs
+                such as dietary preferences, restrictions, selected ingredients, and interaction data.
+                Personal identifiers such as email address or real name are not intentionally sent to AI providers.
+                </p>
+                
+                <p>
+                AI-generated content is provided for informational purposes only and should not be considered
+                medical, nutritional, or professional advice.
+                </p>                
+            <p>For this purpose, user preferences and data entered in the App may be processed. AI processing is not used for automated decision-making that produces legal effects.</p>
+
+            <h4>2.4 Advertising services (Ads)</h4>
+            <p>The App may display ads.</p>
+            <p>
+                Ads displayed in the App may be personalized or non-personalized, depending on the user’s location and consent status.
+                For users located in the European Economic Area (EEA), the United Kingdom, or Switzerland, ads are shown in compliance
+                with GDPR requirements and applicable consent frameworks.
+                </p>
+                
+                <p>
+                Users can manage or withdraw their consent for personalized advertising at any time through the app settings
+                (if available) or via Google Ads settings:
+                <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">
+                https://adssettings.google.com
+                </a>.
+                </p>
+                
+            <p>Advertising partners may:</p>
+            <ul>
+                <li>use advertising identifiers</li>
+                <li>collect data about ad interactions</li>
+            </ul>
+            <p>We do not share personal data such as name or email with advertisers.</p>
+
+            <h3>3. How we use data</h3>
+            <p>Collected data is used only for the following purposes:</p>
+            <ul>
+                <li>providing and supporting the app’s functionality</li>
+                <li>personalizing content and recommendations</li>
+                <li>improving service quality and usability</li>
+                <li>analytics and bug fixing</li>
+                <li>showing ads (if applicable)</li>
+            </ul>
+            <p>We do not sell users’ personal data.</p>
+
+            <h3>4. Sharing data with third parties</h3>
+            <p>Data may be shared only with third parties necessary to operate the App, including:</p>
+            <ul>
+                <li>Supabase</li>
+                <li>Google Firebase</li>
+                <li>advertising and analytics services</li>
+            </ul>
+            <p>
+                We use Supabase as our backend and database infrastructure provider.
+                User data may be processed and stored on Supabase-managed servers under appropriate technical
+                and organizational safeguards.
+                </p>                
+            <p>
+                We use Google Firebase for app usage analytics, error and crash tracking, and improving stability and performance.
+                Firebase may collect technical data, including device identifiers and information about interactions with the app.
+                </p>
+            <p>Data sharing is carried out in accordance with GDPR and applicable law.</p>
+
+            <h3>5. Data storage and security</h3>
+            <p>We apply technical and organizational measures to protect data from unauthorized access, loss, or modification.</p>
+            <p>Data is stored only for as long as necessary to achieve the purposes described in this Policy.</p>
+
+            <h3>6. Account and data deletion</h3>
+            <p>You have the right to delete your account at any time.</p>
+            <p>Deletion is available:</p>
+            <ul>
+                <li>directly in the app, or</li>
+                <li>by contacting support</li>
+            </ul>
+            <p>After account deletion, all associated personal data will be deleted or anonymized, except where retention is required by law.</p>
+
+            <h3>7. Your rights (GDPR)</h3>
+            <p>You have the right to:</p>
+            <ul>
+                <li>obtain information about your data</li>
+                <li>request correction or deletion of data</li>
+                <li>restrict processing</li>
+                <li>withdraw consent to processing</li>
+            </ul>
+            <p>To exercise these rights, you can contact us using the details below.</p>
+
+            <h3>8. Children</h3>
+            <p>The App is not intended for children under 13. We do not knowingly collect children’s personal data.</p>
+
+            <h3>9.International Data Transfers</h3>
+<p>
+Your data may be processed or stored on servers located outside your country of residence,
+including outside the European Economic Area (EEA).
+Where required by law, appropriate safeguards are applied to protect your data in accordance
+with applicable data protection regulations.
+</p>
+
+            <h3>10. Changes to this Privacy Policy</h3>
+            <p>We may update this Privacy Policy. The current version is always available on this page.</p>
+
+            <h3>11. Contact information</h3>
+            <p>If you have any questions, you can contact us:</p>
+            <p>
+                Email: <a href="mailto:andriigudz.de@gmail.com">andriigudz.de@gmail.com</a>
+            </p>
+
+            <h3>12. Jurisdiction</h3>
+            <p>This Privacy Policy is governed by European Union law (GDPR) and applicable national laws.</p>
+        </div>
+
+        <footer>
+            <a href="/">Back to Cutly</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon/components';
+import { content } from '../../data/content';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="max-w-[1200px] mx-auto px-5 py-10 md:py-20 flex flex-col gap-10">
+  <SectionTitle>{content.techTitle}</SectionTitle>
+  
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5 w-full justify-items-center">
+    {content.techStack.map((tech) => (
+      <div class="bg-surface flex flex-col items-center justify-center p-6 rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-[rgba(0,0,0,0.03)] w-full h-[140px] gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(45,130,89,0.15)] hover:border-primary-light group cursor-default">
+        <Icon name={tech.icon} class="text-[2.5rem] text-primary transition-colors duration-300 group-hover:text-primary-dark" />
+        <span class="font-bold text-[0.95rem] text-text-main text-center">{tech.name}</span>
+      </div>
+    ))}
+  </div>
+</section>
