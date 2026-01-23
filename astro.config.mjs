@@ -6,8 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: change to the correct domain
-  site: 'https://cutly.gudz-andrii.com',
+  site: 'https://cutly-app.com/',
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()]
