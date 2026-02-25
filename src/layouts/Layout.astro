@@ -1,53 +1,128 @@
 ---
 import '../styles/global.css';
 import BackToTop from '../components/BackToTop.astro';
-import { content } from '../data/content';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { LOCALES, LOCALE_URLS, type Locale } from '../i18n/index';
 
 interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  locale?: Locale;
 }
 
-const { 
-	title = content.seoTitle, 
-	description = content.seoDescription,
-	image = '/images/logo_cutly.png' // Используем первый скриншот как превью по умолчанию
+const {
+  title = 'Cutly - AI-powered meal planning',
+  description = 'Smart meal planning with AI: menus, recipes, and shopping lists in seconds.',
+  image = '/images/logo_cutly.png',
+  locale = 'en',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://cutly.app');
+const siteBase = 'https://cutly-app.com';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteBase);
+const ogLocaleMap: Record<string, string> = { en: 'en_US', de: 'de_DE', uk: 'uk_UA', ru: 'ru_RU' };
+const pageOgLocale = ogLocaleMap[locale] ?? 'en_US';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cutly',
+  operatingSystem: 'Android',
+  applicationCategory: 'HealthApplication',
+  description,
+  url: `${siteBase}${LOCALE_URLS[locale]}`,
+  downloadUrl: 'https://play.google.com/store/apps/details?id=com.andriigudz.cutly',
+  author: {
+    '@type': 'Person',
+    name: 'Andrii Gudz',
+    url: 'https://gudz-andrii.com/'
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD'
+  },
+  screenshot: [
+    `${siteBase}/images/cutly_1.webp`,
+    `${siteBase}/images/cutly_2.webp`,
+    `${siteBase}/images/cutly_3.webp`
+  ],
+  inLanguage: locale,
+  image: `${siteBase}/images/logo_cutly.png`
+};
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="canonical" href={canonicalURL} />
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/logo_cutly.png" />
+    <meta name="theme-color" content="#2d8259" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
 
-		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Andrii Gudz" />
+    <meta name="robots" content="index, follow" />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, canonicalURL)} />
+    <!-- hreflang для SEO -->
+    <link rel="alternate" hreflang="x-default" href={`${siteBase}/`} />
+    {LOCALES.map((loc) => (
+      <link rel="alternate" hreflang={loc} href={`${siteBase}${LOCALE_URLS[loc]}`} />
+    ))}
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalURL} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, canonicalURL)} />
-	</head>
-	<body>
-		<slot />
-		<BackToTop />
-	</body>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+    <meta property="og:locale" content={pageOgLocale} />
+    <meta property="og:site_name" content="Cutly" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+    <meta name="twitter:site" content="@cutly_app" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <LanguageSwitcher currentLocale={locale} />
+    <slot />
+    <BackToTop />
+
+    {locale === 'en' && (
+      <script>
+        (function () {
+          const LOCALE_URLS = { de: '/de/', uk: '/uk/', ru: '/ru/' };
+          // Умный редирект: только если пользователь ещё не выбирал язык (первый визит)
+          const saved = localStorage.getItem('cutly-locale');
+          if (!saved) {
+            // Определяем язык браузера
+            const lang = (navigator.language || '').split('-')[0].toLowerCase();
+            if (lang && lang !== 'en' && LOCALE_URLS[lang]) {
+              // Запоминаем выбор и редиректим только при первом визите
+              localStorage.setItem('cutly-locale', lang);
+              window.location.replace(LOCALE_URLS[lang]);
+            } else {
+              // Запоминаем 'en' чтобы при следующем визите не проверять заново
+              localStorage.setItem('cutly-locale', 'en');
+            }
+          }
+          // Если saved уже есть — пользователь ранее посещал сайт, не редиректим
+          // Googlebot не имеет localStorage → saved всегда null → lang = 'en' → нет редиректа
+        })();
+      </script>
+    )}
+  </body>
 </html>

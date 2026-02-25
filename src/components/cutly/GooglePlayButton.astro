@@ -1,7 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { content } from '../../data/content';
+import type { en } from '../../i18n/en';
 
+interface Props {
+  content: typeof en;
+}
+
+const { content } = Astro.props;
 const { googlePlay, links } = content;
 ---
 

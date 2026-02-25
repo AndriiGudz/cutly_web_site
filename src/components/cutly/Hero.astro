@@ -1,9 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { content } from '../../data/content';
 import GooglePlayButton from './GooglePlayButton.astro';
+import type { en } from '../../i18n/en';
 
-const { subtitle, logoAlt } = content;
+interface Props {
+  content: typeof en;
+}
+
+const { content } = Astro.props;
+const { subtitle, logoAlt, seoTitle } = content;
 ---
 
 <section class="flex min-h-[80vh] flex-col items-center justify-center pt-24 md:pt-35 pb-20 px-5 text-center gap-10">
@@ -12,13 +17,17 @@ const { subtitle, logoAlt } = content;
     alt={logoAlt}
     class="w-[200px] md:w-[350px] mb-2 animate-fade-in-up"
   />
-  
+
+  <h1 class="text-3xl md:text-5xl font-bold text-text-main max-w-[750px] leading-tight animate-fade-in-up delay-50">
+    {seoTitle}
+  </h1>
+
   <p class="text-lg md:text-xl text-text-secondary max-w-[600px] leading-relaxed mb-8 animate-fade-in-up delay-100">
     {subtitle}
   </p>
   
   <div class="flex gap-4 flex-wrap justify-center animate-fade-in-up delay-200">
-    <GooglePlayButton />
+    <GooglePlayButton content={content} />
   </div>
 </section>
 
@@ -27,6 +36,10 @@ const { subtitle, logoAlt } = content;
     animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
+  }
+
+  .delay-50 {
+    animation-delay: 0.05s;
   }
   
   .delay-100 {

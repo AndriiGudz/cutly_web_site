@@ -1,4 +1,4 @@
-export const content = {
+export const en = {
   seoTitle: "Cutly - AI-powered meal planning",
   seoDescription: "Smart meal planning with AI: menus, recipes, and shopping lists in seconds.",
   logoAlt: "Cutly logo",
@@ -41,7 +41,7 @@ export const content = {
     {
       id: "dataControl",
       title: "Data control",
-      text: "Full control over your data. We collect only what’s needed for the app to work.",
+      text: "Full control over your data. We collect only what's needed for the app to work.",
       icon: "fa6-solid:shield-halved"
     }
   ],

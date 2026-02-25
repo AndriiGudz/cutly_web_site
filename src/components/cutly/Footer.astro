@@ -1,9 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { content } from '../../data/content';
-import SectionTitle from './SectionTitle.astro';
+import type { en } from '../../i18n/en';
 
-// Override SectionTitle style for footer
+interface Props {
+  content: typeof en;
+}
+
+const { content } = Astro.props;
 ---
 
 <footer class="bg-primary-dark text-white py-15 px-5 text-center">
@@ -16,6 +19,20 @@ import SectionTitle from './SectionTitle.astro';
       <p class="text-[rgba(255,255,255,0.8)] max-w-[600px] mx-auto text-base leading-relaxed">
         {content.developerText}
       </p>
+    </div>
+
+    <div class="mt-4 flex flex-col gap-4 items-center">
+      <p class="text-[rgba(255,255,255,0.9)] text-lg">
+        {content.socialTitle}
+      </p>
+      <div class="flex gap-6">
+        <a href={content.links.telegram} target="_blank" class="text-white hover:text-primary-light transition-colors duration-300">
+          <Icon name="fa6-brands:telegram" class="text-3xl" />
+        </a>
+        <a href={content.links.instagram} target="_blank" class="text-white hover:text-primary-light transition-colors duration-300">
+          <Icon name="fa6-brands:instagram" class="text-3xl" />
+        </a>
+      </div>
     </div>
 
     <div class="mt-8 flex flex-col gap-6 items-center">
