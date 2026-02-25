@@ -16,7 +16,7 @@ const screenshots = [
 
 const images = screenshots.map((src, i) => ({
   src,
-  alt: content.screenshotsAlt.replace('{{index}}', (i + 1).toString())
+  alt: `${content.screenshotsAlt} ${i + 1}`
 }));
 ---
 
@@ -31,12 +31,13 @@ const images = screenshots.map((src, i) => ({
              еще ДО того, как Swiper включит свой loop режим. Это помогает избежать дыр 
              на широких экранах, если слайдов недостаточно для заполнения всей ширины. -->
         {[...images, ...images, ...images].map((img, index) => (
-          <div class="swiper-slide">
+          <div class="swiper-slide" aria-hidden={index >= screenshots.length ? 'true' : 'false'}>
             <img
               src={img.src}
-              alt={`${img.alt} - duplicate ${index}`}
+              alt={index >= screenshots.length ? '' : img.alt}
               class="w-full rounded-[20px] shadow-[0_15px_35px_rgba(45,130,89,0.2)] border-4 border-white block"
-              loading="lazy"
+              loading={index < screenshots.length ? 'eager' : 'lazy'}
+              role={index >= screenshots.length ? 'presentation' : undefined}
             />
           </div>
         ))}
