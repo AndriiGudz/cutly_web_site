@@ -1,9 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { content } from '../../data/content';
-import SectionTitle from './SectionTitle.astro';
+import type { en } from '../../i18n/en';
 
-// Override SectionTitle style for footer
+interface Props {
+  content: typeof en;
+}
+
+const { content } = Astro.props;
 ---
 
 <footer class="bg-primary-dark text-white py-15 px-5 text-center">

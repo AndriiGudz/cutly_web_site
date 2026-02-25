@@ -1,0 +1,176 @@
+---
+import { Icon } from 'astro-icon/components';
+import { LOCALES, LOCALE_FLAGS, LOCALE_LABELS, LOCALE_NAMES, LOCALE_URLS, type Locale } from '../i18n/index';
+
+interface Props {
+  currentLocale: Locale;
+}
+
+const { currentLocale } = Astro.props;
+---
+
+<div class="lang-switcher" id="lang-switcher">
+  <button
+    class="lang-btn"
+    id="lang-btn"
+    aria-label="Switch language"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+  >
+    {/* <Icon name={LOCALE_FLAGS[currentLocale]} class="lang-flag" /> */}
+    <span class="lang-code">{LOCALE_LABELS[currentLocale]}</span>
+    <svg class="lang-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Select language">
+    {LOCALES.map((locale) => (
+      <li role="option" aria-selected={locale === currentLocale}>
+        <a
+          href={LOCALE_URLS[locale]}
+          class:list={['lang-option', { active: locale === currentLocale }]}
+          hreflang={locale}
+          onclick={`localStorage.setItem('cutly-locale', '${locale}')`}
+        >
+          {/* <Icon name={LOCALE_FLAGS[locale]} class="lang-flag-item" /> */}
+          <span>{LOCALE_NAMES[locale]}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .lang-switcher {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(45, 130, 89, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-nunito, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-primary, #2D8259);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .lang-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .lang-flag {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lang-flag-item {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lang-code {
+    letter-spacing: 0.5px;
+  }
+
+  .lang-arrow {
+    transition: transform 0.2s ease;
+    color: var(--color-primary, #2D8259);
+  }
+
+  .lang-switcher.open .lang-arrow {
+    transform: rotate(180deg);
+  }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 160px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(45, 130, 89, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.97);
+    transition: all 0.2s ease;
+    transform-origin: top right;
+  }
+
+  .lang-switcher.open .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-main, #0A0A0A);
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .lang-option:hover {
+    background: rgba(45, 130, 89, 0.08);
+    color: var(--color-primary, #2D8259);
+  }
+
+  .lang-option.active {
+    background: rgba(45, 130, 89, 0.12);
+    color: var(--color-primary, #2D8259);
+  }
+</style>
+
+<script>
+  const switcher = document.getElementById('lang-switcher');
+  const btn = document.getElementById('lang-btn');
+  const dropdown = document.getElementById('lang-dropdown');
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = switcher?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', () => {
+    switcher?.classList.remove('open');
+    btn?.setAttribute('aria-expanded', 'false');
+  });
+
+  dropdown?.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+</script>

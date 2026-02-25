@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/cutly/Hero.astro';
+import Screenshots from '../../components/cutly/Screenshots.astro';
+import Description from '../../components/cutly/Description.astro';
+import Features from '../../components/cutly/Features.astro';
+import Audience from '../../components/cutly/Audience.astro';
+import TechStack from '../../components/cutly/TechStack.astro';
+import Privacy from '../../components/cutly/Privacy.astro';
+import DeleteAccount from '../../components/cutly/DeleteAccount.astro';
+import Footer from '../../components/cutly/Footer.astro';
+import DownloadCTA from '../../components/cutly/DownloadCTA.astro';
+import { getTranslation } from '../../i18n/index';
+
+const content = getTranslation('de');
+---
+
+<Layout
+  title={content.seoTitle}
+  description={content.seoDescription}
+  locale="de"
+>
+  <main class="w-full bg-background text-text-main">
+    <Hero content={content} />
+    <Screenshots />
+    <Description content={content} />
+    <Features content={content} />
+    <Audience content={content} />
+    <TechStack content={content} />
+    <Privacy content={content} />
+    <DeleteAccount content={content} />
+    <DownloadCTA content={content} />
+    <Footer content={content} />
+  </main>
+</Layout>

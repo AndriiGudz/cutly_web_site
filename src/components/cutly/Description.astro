@@ -1,5 +1,11 @@
 ---
-import { content } from '../../data/content';
+import type { en } from '../../i18n/en';
+
+interface Props {
+  content: typeof en;
+}
+
+const { content } = Astro.props;
 ---
 
 <section class="section">

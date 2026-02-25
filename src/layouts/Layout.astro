@@ -1,53 +1,78 @@
 ---
 import '../styles/global.css';
 import BackToTop from '../components/BackToTop.astro';
-import { content } from '../data/content';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { LOCALES, LOCALE_URLS, type Locale } from '../i18n/index';
 
 interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  locale?: Locale;
 }
 
-const { 
-	title = content.seoTitle, 
-	description = content.seoDescription,
-	image = '/images/logo_cutly.png' // Используем первый скриншот как превью по умолчанию
+const {
+  title = 'Cutly - AI-powered meal planning',
+  description = 'Smart meal planning with AI: menus, recipes, and shopping lists in seconds.',
+  image = '/images/logo_cutly.png',
+  locale = 'en',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://cutly.app');
+const siteBase = 'https://cutly-app.com';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteBase);
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="canonical" href={canonicalURL} />
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
 
-		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, canonicalURL)} />
+    <!-- hreflang для SEO -->
+    <link rel="alternate" hreflang="x-default" href={`${siteBase}/`} />
+    {LOCALES.map((loc) => (
+      <link rel="alternate" hreflang={loc} href={`${siteBase}${LOCALE_URLS[loc]}`} />
+    ))}
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalURL} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, canonicalURL)} />
-	</head>
-	<body>
-		<slot />
-		<BackToTop />
-	</body>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+  </head>
+  <body>
+    <LanguageSwitcher currentLocale={locale} />
+    <slot />
+    <BackToTop />
+
+    {locale === 'en' && (
+      <script>
+        (function () {
+          const LOCALE_URLS = { de: '/de/', uk: '/uk/', ru: '/ru/' };
+          const saved = localStorage.getItem('cutly-locale');
+          const lang = saved || (navigator.language || '').split('-')[0].toLowerCase();
+          if (lang && lang !== 'en' && LOCALE_URLS[lang]) {
+            localStorage.setItem('cutly-locale', lang);
+            window.location.replace(LOCALE_URLS[lang]);
+          }
+        })();
+      </script>
+    )}
+  </body>
 </html>
