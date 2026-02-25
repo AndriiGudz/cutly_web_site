@@ -18,6 +18,20 @@ import SectionTitle from './SectionTitle.astro';
       </p>
     </div>
 
+    <div class="mt-4 flex flex-col gap-4 items-center">
+      <p class="text-[rgba(255,255,255,0.9)] text-lg">
+        {content.socialTitle}
+      </p>
+      <div class="flex gap-6">
+        <a href={content.links.telegram} target="_blank" class="text-white hover:text-primary-light transition-colors duration-300">
+          <Icon name="fa6-brands:telegram" class="text-3xl" />
+        </a>
+        <a href={content.links.instagram} target="_blank" class="text-white hover:text-primary-light transition-colors duration-300">
+          <Icon name="fa6-brands:instagram" class="text-3xl" />
+        </a>
+      </div>
+    </div>
+
     <div class="mt-8 flex flex-col gap-6 items-center">
       <div class="flex flex-wrap justify-center items-center gap-8">
         <a href={content.links.website} target="_blank" class="flex items-center gap-2 text-primary-light no-underline hover:underline">

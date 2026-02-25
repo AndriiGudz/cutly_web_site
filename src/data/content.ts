@@ -71,10 +71,13 @@ export const content = {
   accountText: "Users can request account deletion directly inside the app. After deletion, all related personal data will be permanently removed.",
   developerTitle: "About the developer",
   developerText: "Cutly is developed as an independent project focused on convenience, transparency, and modern technologies. Feedback and suggestions are always welcome.",
+  socialTitle: "Follow the project's news on our social media:",
   links: {
     website: "https://gudz-andrii.com/",
     email: "mailto:andriigudz.de@gmail.com",
-    googlePlay: "https://play.google.com/apps/testing/com.andriigudz.cutly"
+    googlePlay: "https://play.google.com/store/apps/details?id=com.andriigudz.cutly",
+    telegram: "https://t.me/cutly_ai",
+    instagram: "https://www.instagram.com/cutly_app_com/"
   },
   downloadTitle: "Ready to start planning?",
   copyright: "© 2026 Cutly. All rights reserved."
