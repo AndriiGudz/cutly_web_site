@@ -5,13 +5,13 @@ export const de = {
   subtitle: "Cutly ist dein persönlicher Assistent. Plane Mahlzeiten, erstelle Menüs und Einkaufslisten in Sekunden.",
   googlePlay: "Google Play",
   screenshotsAlt: "Cutly Screenshot",
-  description: "Cutly ist eine mobile App für intelligente Mahlzeitenplanung, die auf künstlicher Intelligenz basiert. Sie hilft Nutzern, schnell ein Menü für einen Tag oder eine Woche zu erstellen, Gerichte basierend auf Ernährung, Allergien, Geschmackspräferenzen und Region auszuwählen, und generiert eine Einkaufsliste für die gewählten Mahlzeiten. Die App ist mehrsprachig und unterstützt beim Start Englisch, Deutsch, Ukrainisch und Russisch.",
+  description: "Cutly ist eine mobile App für intelligente Mahlzeitenplanung, die auf künstlicher Intelligenz basiert. Sie hilft Nutzern, schnell ein Tagesmenü zu erstellen oder einzelne Gerichte basierend auf Ernährung, Allergien, Geschmackspräferenzen und Region auszuwählen, und generiert eine Einkaufsliste. Die App ist mehrsprachig und unterstützt Englisch, Deutsch, Ukrainisch und Russisch.",
   featuresTitle: "Hauptfunktionen",
   features: [
     {
       id: "aiMenu",
       title: "KI-Menügenerierung",
-      text: "Sofortige Menüerstellung für einen Tag oder eine Woche. Intelligente Gerichteauswahl basierend auf deinen Vorlieben.",
+      text: "Sofortige Erstellung eines Tagesmenüs oder einzelner Gerichte. Intelligente Gerichteauswahl basierend auf deinen Vorlieben.",
       icon: "fa6-solid:robot"
     },
     {

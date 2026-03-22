@@ -5,13 +5,13 @@ export const content = {
   subtitle: "Cutly is your personal assistant. Plan meals, create menus and shopping lists in seconds.",
   googlePlay: "Google Play",
   screenshotsAlt: "Cutly screenshot",
-  description: "Cutly is a mobile app for smart meal planning powered by artificial intelligence. It helps users quickly create a menu for a day or a week, selecting dishes based on diet, allergies, taste preferences, and region, and also generates a shopping list for the chosen meals. The app is multilingual and at launch supports English, German, Ukrainian, and Russian.",
+  description: "Cutly is a mobile app for smart meal planning powered by artificial intelligence. It helps users quickly create a daily menu or select individual dishes based on diet, allergies, taste preferences, and region, and also generates a shopping list. The app is multilingual and supports English, German, Ukrainian, and Russian.",
   featuresTitle: "Key features",
   features: [
     {
       id: "aiMenu",
       title: "AI menu generation",
-      text: "Instant menu creation for a day or a week. Smart dish selection based on your tastes.",
+      text: "Instant menu creation for a day or individual dishes. Smart dish selection based on your tastes.",
       icon: "fa6-solid:robot"
     },
     {
